@@ -11,7 +11,7 @@ import time
 def browser_context_args(browser_context_args):
     return {
         **browser_context_args,
-        "viewport": {"width": 800, "height": 600},
+        "viewport": {"width": 800, "height": 800},
     }
 
 
@@ -112,6 +112,7 @@ def test_game_over_message_appears(page):
     file_url = f"file://{index_path.replace(os.sep, '/')}"
     
     page.goto(file_url)
+    time.sleep(15)
     
     # Keep making moves until the game is over or max attempts reached
     max_attempts = 200
@@ -121,7 +122,7 @@ def test_game_over_message_appears(page):
     while not page.locator("#message").is_visible() and attempt < max_attempts:
         for key in keys:
             page.keyboard.press(key)
-            time.sleep(0.05)
+            time.sleep(0.1)
             if page.locator("#message").is_visible():
                 break
         attempt += 1
@@ -129,4 +130,4 @@ def test_game_over_message_appears(page):
     # Assert that the game over message is now visible
     assert page.locator("#message").is_visible()
     assert page.locator("#message-text").is_visible()
-    time.sleep(0.5)
+    time.sleep(2)

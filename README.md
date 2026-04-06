@@ -1,6 +1,5 @@
-# Python Playwright Project
-
-An empty Python Playwright project.
+# Python Playwright on 2048
+![image](readme/demo.gif)
 
 ## Setup
 
